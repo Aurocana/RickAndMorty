@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Rick y Morty</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+
+<body>
+  <section class="modal">
+    <div class="hidden">
+
+    </div>
+  </section>
+
+
+  <section id="encabezado" class="encabezado">
+  </section>
+  <main>
+    <div class="filtros">
+      <h3>Busqueda</h3>
+      <div class="controles">
+        <input type="text" name="" id="busqueda">
+        <label for="">Especie</label>
+        <select name="" id="filtroEspecie">
+          <option value="all" selected>Todo</option>
+          <option value="Human">Humano</option>
+          <option value="Alien">Alien</option>
+          <option value="Robot">Robot</option>
+          <option value="Unknown">Unknown</option>
+
+        </select>
+        <label for=""> Género</label>
+        <select name="" id="filtroGenero">
+          <option value="all">Todo</option>
+          <option value="male">Masculino</option>
+          <option value="female">Femenino</option>
+        </select>
+        <label for=""> Estado </label>
+        <select name="" id="filtroEstado">
+          <option value="all">Todo</option>
+          <option value="Alive">Vivo</option>
+          <option value="Dead">Muerto</option>
+          <option value="Unknown">Desconocido</option>
+        </select>
+        <label for="">orden</label>
+        <select name="orden" id="filtroOrden">
+          <option value="A/Z">A/Z</option>
+          <option value="Z/A">Z/A</option>
+        </select>
+      </div>
+    </div>
+    <section class="contenedor-personajes" id="contenedor-personajes">
+
+    </section>
+    <div class="paginacion">
+      <button id="btnPrimeraPagina" style="background-color: aquamarine;">
+        << Primera Página</button>
+          <button id="btnAnterior">
+            < Anterior</button>
+              <button id="btnSiguiente"> Siguiente > </button>
+              <button id="btnUltimaPagina"> Ultima Página >> </button>
+    </div>
+  </main>
+</body>
+<script src="main.js"></script>
+
+</html>
