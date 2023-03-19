@@ -1,5 +1,43 @@
 
-#btnPrimeraPagina {
+/* .paginacion {
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: 3px;
+  flex-grow: 4px;
   border-radius: 1px;
-  border: 1px solid green;
- }
+  border: 1px solid red;
+ } */
+
+  $color-primary: blue;
+
+  .paginado{
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    align-items: center;
+
+    box-shadow: blue;
+        button {
+          border-radius: 3px;
+          .btnPrimeraPagina {
+          color: $color-primary;
+          }
+        }
+  }
+  .paginado:hover {
+    color: orange; 
+  }
+  
+  
+ 
+  
+
+  

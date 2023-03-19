@@ -1,7 +1,18 @@
 .filtros{
     background-color: aquamarine;
+    height: 100%;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+
+    h3 {
+        font-size: 18px;
+        font-family: 'Courier New', Courier, monospace;
+        align-items: left;
+    }
+
+   
+    
 }

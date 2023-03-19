@@ -2,6 +2,7 @@
     background-image: url("https://wallpapercave.com/wp/wp6631294.jpg");
     height: 40rem;
     width: 100%;
+    margin: 0;
 }
 .modal {
    display: flex;
@@ -9,4 +10,12 @@
    justify-content: center;
    height: 500px;
    width: 500px;
+   text-align:right ;
+}
+h1 {
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: 2px;
+  text-align: center;
+  padding: 20px;
 }

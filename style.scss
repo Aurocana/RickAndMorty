@@ -7,7 +7,6 @@ body {
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
-
 @import "./base/normalize";
 @import "./componente/buttons";
 @import "./componente/searchBar";
@@ -51,7 +50,7 @@ section {
 }
 .personaje-card__img img {
   max-width: 100%;
-  height: 100%;
+  height: 120%;
   object-fit: cover;
   border-radius: 50%;
 }
@@ -59,13 +58,15 @@ section {
 .character-card {
   background-color: white;
   border-radius: 20px;
-  height: 200px;
-  width: 150px;
+  height: 350px;
+  width: 210px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 10px;
+  box-shadow: 0 4px 5px rgba(0.5, 0.5, 0.5, 0.8)
+  
 }
 
 .contenedor-personajes {
