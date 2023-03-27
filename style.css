@@ -82,7 +82,8 @@ a {
 abbr[title] {
   border-bottom: none; /* 1 */
   text-decoration: underline; /* 2 */
-  text-decoration: underline dotted; /* 2 */
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted; /* 2 */
 }
 
 /**
@@ -177,7 +178,8 @@ a {
 abbr[title] {
   border-bottom: none; /* 1 */
   text-decoration: underline; /* 2 */
-  text-decoration: underline dotted; /* 2 */
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted; /* 2 */
 }
 
 /**
@@ -424,7 +426,7 @@ template {
   border: 1px solid red;
  } */
 .paginado {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -444,6 +446,17 @@ template {
 
 .paginado:hover {
   color: orange;
+}
+
+.btn-ver-mas {
+  background-color: rgb(107, 145, 50);
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 10px;
 }
 
 .filtros {
@@ -489,13 +502,11 @@ h1 {
   font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   text-decoration: none;
   outline: none;
   border: none;
   text-transform: capitalize;
-  -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
 }
 
@@ -525,8 +536,13 @@ section {
 .personaje-card__img img {
   max-width: 100%;
   height: 120%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 50%;
+}
+
+button {
+  cursor: pointer;
 }
 
 .character-card {
@@ -541,12 +557,13 @@ section {
   padding: 10px;
   box-shadow: 0 4px 5px rgba(1, 1, 1, 0.8);
 }
+.character-card:hover {
+  transform: scale(1.05);
+}
 
 .contenedor-personajes {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

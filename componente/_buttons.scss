@@ -1,4 +1,3 @@
-
 /* .paginacion {
   
   display: flex;
@@ -11,33 +10,37 @@
   border: 1px solid red;
  } */
 
-  $color-primary: blue;
+$color-primary: blue;
 
-  .paginado{
-    background-color: #4CAF50; 
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    align-items: center;
+.paginado {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  align-items: center;
 
-    box-shadow: blue;
-        button {
-          border-radius: 3px;
-          .btnPrimeraPagina {
-          color: $color-primary;
-          }
-        }
+  box-shadow: blue;
+  button {
+    border-radius: 3px;
+    .btnPrimeraPagina {
+      color: $color-primary;
+    }
   }
-  .paginado:hover {
-    color: orange; 
-  }
-  
-  
- 
-  
-
-  
+}
+.paginado:hover {
+  color: orange;
+}
+.btn-ver-mas {
+  background-color: rgb(107, 145, 50);
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 10px;
+}

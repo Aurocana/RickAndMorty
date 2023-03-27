@@ -1,5 +1,5 @@
 // Variables
-const pokemonContainer = $("#contenedor-personajes");
+const rickMortyContainer = $("#contenedor-personajes");
 let pagina = 1;
 
 // Funciones
@@ -9,47 +9,69 @@ function $(elemento) {
 }
 
 // ===============div modal cardOne
-/* let pokemonCardModal=[
+/* let rickMortyCardModal=[
   id:  
  ]
  */
 const $modal = $("#modal");
-$;
 
 async function obtenerDatos(pagina) {
   const url = `https://rickandmortyapi.com/api/character?page=${pagina}`;
   const respuesta = await fetch(url);
   const datos = await respuesta.json();
-  console.log(datos);
+  return datos;
+}
+
+async function obtenerPersonajesFiltro(filtro, valor) {
+  const url = `https://rickandmortyapi.com/api/character?${filtro}=${valor}`;
+  const respuesta = await fetch(url);
+  const datos = await respuesta.json();
+  return datos;
+}
+
+async function obtenerPersonaje(id) {
+  const url = `https://rickandmortyapi.com/api/character/${id}`;
+  const respuesta = await fetch(url);
+  const datos = await respuesta.json();
   return datos;
 }
 
 function personajes(data) {
   for (let i = 0; i < data.length; i++) {
-    const pokemon = data[i];
-    const pokemonCard = `
-        <div class="character-card" onclick="filtrarPersonaje(${pokemon.id})">
+    const rickMorty = data[i];
+    const rickMortyCard = `
+        <div class="character-card" onclick="obtenerMasDetalles(${rickMorty.id})">
             <div class="personaje-card__img">
-            <img src="${pokemon.image}" alt="${pokemon.name}" />
+            <img src="${rickMorty.image}" alt="${rickMorty.name}" />
             </div>
             <div class="character-card__info">
-            <h3 class="character-card__name"> name: ${pokemon.name}</h3>
-            <p class="character-card_id"> ID:${pokemon.id}</p>
-            <p class="character-card__species"> species:${pokemon.species}</p>
-            <p clas ="character-card_gender"> gender: ${pokemon.gender}</p>
-            <p class="character-card_status"> status: ${pokemon.status}</p>
+            <h3 class="character-card__name">${rickMorty.name}</h3>
+            <button class="btn-ver-mas">Ver más</button>
             </div>
         </div>
         `;
-    pokemonContainer.innerHTML += pokemonCard;
+    rickMortyContainer.innerHTML += rickMortyCard;
   }
 }
 
-async function filtrarPersonaje(id) {
+async function obtenerMasDetalles(id) {
   limpiarContenido();
-  console.log(id);
-  const personajesFiltrados = await filtrarPersonajes(id, "ID");
-  personajes(personajesFiltrados);
+  const rickMorty = await obtenerPersonaje(id);
+  const rickMortyCard = `
+        <div class="character-card">
+            <div class="personaje-card__img">
+            <img src="${rickMorty.image}" alt="${rickMorty.name}" />
+            </div>
+            <div class="character-card__info">
+            <h3 class="character-card__name">${rickMorty.name}</h3>
+            <p class="character-card_id"> ID:${rickMorty.id}</p>
+            <p class="character-card__species"> species:${rickMorty.species}</p>
+            <p clas ="character-card_gender"> gender: ${rickMorty.gender}</p>
+            <p class="character-card_status"> status: ${rickMorty.status}</p>
+            </div>
+        </div>
+        `;
+  rickMortyContainer.innerHTML += rickMortyCard;
 }
 
 function mostrarTodosCaracteres(pagina) {
@@ -65,13 +87,19 @@ window.addEventListener("load", () => {
 });
 
 $("#btnSiguiente").addEventListener("click", () => {
-  pokemonContainer.innerHTML = "";
+  if (pagina === 42) {
+    return;
+  }
+  rickMortyContainer.innerHTML = "";
   pagina++;
   mostrarTodosCaracteres(pagina);
 });
 
 $("#btnAnterior").addEventListener("click", () => {
-  pokemonContainer.innerHTML = "";
+  if (pagina === 1) {
+    return;
+  }
+  rickMortyContainer.innerHTML = "";
   pagina--;
   mostrarTodosCaracteres(pagina);
 });
@@ -88,17 +116,16 @@ $("#btnUltimaPagina").addEventListener("click", () => {
   mostrarTodosCaracteres(pagina);
 });
 
-$("#busqueda").addEventListener("keyup", (e) => {
-  obtenerDatos(pagina).then((datos) => {
-    const listaPersonajes = datos.results;
-    const personajeFiltrado = listaPersonajes.filter((personaje) => {
-      return personaje.name
-        .toLowerCase()
-        .includes(e.target.value.toLowerCase());
-    });
-    pokemonContainer.innerHTML = "";
-    personajes(personajeFiltrado);
-  });
+$("#busqueda").addEventListener("keyup", async (e) => {
+  const valor = e.target.value;
+  limpiarContenido();
+  if (valor === "") {
+    mostrarTodosCaracteres(pagina);
+  } else {
+    let busquedaPersonajes = await obtenerPersonajesFiltro("name", valor);
+    busquedaPersonajes = busquedaPersonajes.results;
+    personajes(busquedaPersonajes);
+  }
 });
 
 $("#filtroOrden").addEventListener("change", async (e) => {
@@ -140,7 +167,8 @@ $("#filtroEstado").addEventListener("change", async (e) => {
   if (valor === "all") {
     mostrarTodosCaracteres(pagina);
   } else {
-    const personajesFiltrados = await filtrarPersonajes(valor, "status");
+    let personajesFiltrados = await obtenerPersonajesFiltro("status", valor);
+    personajesFiltrados = personajesFiltrados.results;
     personajes(personajesFiltrados);
   }
 });
@@ -151,8 +179,9 @@ $("#filtroGenero").addEventListener("change", async (e) => {
   if (valor === "all") {
     mostrarTodosCaracteres(pagina);
   } else {
-    const personajesFiltrados = await filtrarPersonajes(valor, "gender");
-    personajes(personajesFiltrados);
+    let busquedaPersonajes = await obtenerPersonajesFiltro("gender", valor);
+    busquedaPersonajes = busquedaPersonajes.results;
+    personajes(busquedaPersonajes);
   }
 });
 
@@ -162,26 +191,12 @@ $("#filtroEspecie").addEventListener("change", async (e) => {
   if (valor === "all") {
     mostrarTodosCaracteres(pagina);
   } else {
-    const personajesFiltrados = await filtrarPersonajes(valor, "species");
-    personajes(personajesFiltrados);
+    let busquedaPersonajes = await obtenerPersonajesFiltro("species", valor);
+    busquedaPersonajes = busquedaPersonajes.results;
+    personajes(busquedaPersonajes);
   }
 });
 
-async function filtrarPersonajes(valor, filtro) {
-  const datos = await obtenerDatos(pagina);
-  const listaPersonajes = datos.results;
-  if (filtro === "ID") {
-    const personajeFiltrado = listaPersonajes.filter((personaje) => {
-      return personaje.id == valor;
-    });
-    return personajeFiltrado;
-  }
-  const personajeFiltrado = listaPersonajes.filter((personaje) => {
-    return personaje[filtro].toLowerCase() == valor.toLowerCase();
-  });
-  return personajeFiltrado;
-}
-
 function limpiarContenido() {
-  pokemonContainer.innerHTML = "";
+  rickMortyContainer.innerHTML = "";
 }
